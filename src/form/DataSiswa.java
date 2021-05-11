@@ -5,8 +5,8 @@
  */
 package form;
 
-import classes.DatabaseConnection;
 import java.sql.Connection;
+import classes.DatabaseConnection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -15,7 +15,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author THINKPAD
+ * @author WIN 10
  */
 public class DataSiswa extends javax.swing.JFrame {
 
@@ -32,7 +32,6 @@ public class DataSiswa extends javax.swing.JFrame {
     
     DefaultTableModel dtm;
     public void showData(){
-        
         String[] kolom = {"NO", "NIS", "Nama", "Kelas", "Jurusan"};
         
         dtm = new DefaultTableModel(null, kolom);
@@ -53,7 +52,6 @@ public class DataSiswa extends javax.swing.JFrame {
         }
         catch(SQLException ex){
             ex.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Terjadi Kesalahan di Query");
         }
         tbl_siswa.setModel(dtm);
     }
@@ -175,10 +173,14 @@ public class DataSiswa extends javax.swing.JFrame {
 
     private void cmdRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdRefreshActionPerformed
         // TODO add your handling code here:
+        showData();
     }//GEN-LAST:event_cmdRefreshActionPerformed
 
     private void cmdUbahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdUbahActionPerformed
         // TODO add your handling code here:
+        String nis = tbl_siswa.getValueAt(baris, 1).toString();
+        Managedata tambahData = new Managedata(this, true, "Edit",nis);
+        tambahData.setVisible(true);
     }//GEN-LAST:event_cmdUbahActionPerformed
 int baris;
     private void tbl_siswaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_siswaMouseClicked
@@ -203,12 +205,12 @@ int baris;
             }
         } catch (SQLException ex){
             ex.printStackTrace();
-        }
+        } 
     }//GEN-LAST:event_cmdHapusActionPerformed
 
     private void cmdTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdTambahActionPerformed
         // TODO add your handling code here:
-        ManageData tambahData = new ManageData(this, true);
+        Managedata tambahData = new Managedata(this, true, "Tambah","");
         tambahData.setVisible(true);
     }//GEN-LAST:event_cmdTambahActionPerformed
 
